@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="{44F7E06D-D64A-4AEE-B23C-1A7A371AC2EB}" Name="SetupProject1" Language="1033" Version="1.0.0.0" Manufacturer="Konica Minolta Business Solutions Spain" UpgradeCode="82b62b32-be01-43fe-9823-fc27dd32cc67">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="SetupProject1" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+		<UIRef Id="WixUI_Mondo" />
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="SetupProject1" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="ProductComponent" Guid="{7F98847B-DBB6-4830-93FD-128BF546EEFE}">
+				<File Id="SoporteKM" Name="soporteKM.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe"></File>
+				<File Id="SoporteKMconfig" Name="soporteKM.exe.config" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe.config"></File>
+							
+			</Component>
+		</ComponentGroup>
+	</Fragment>
+</Wix>
