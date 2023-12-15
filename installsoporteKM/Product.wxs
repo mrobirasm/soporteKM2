@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
-	<Product Id="{59903F38-416E-43B5-A31D-9F1950CBE8C2}" Name="soporteKM" Language="1033" Codepage="1252" Version="1.0.0.0" Manufacturer="Konica Minolta Business Solutions Spain" UpgradeCode="90ab0642-7e3d-47f1-ad73-292b68e42e81">
+	<Product Id="{59903F38-416E-43B5-A31D-9F1950CBE8C2}" 
+			 Name="soporteKM" 
+			 Language="1033" 
+			 Codepage="1252" 
+			 Version="1.0.0.0" 
+			 Manufacturer="Konica Minolta Business Solutions Spain" 
+			 UpgradeCode="90ab0642-7e3d-47f1-ad73-292b68e42e81">
+		
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
 		<!-- Gestiona las actualizaciones posteriores. Estos MSI de actualización deben tener igual UpgradeCode, distinto Id y una versión superior-->
@@ -10,6 +17,11 @@
 		<Feature Id="ProductFeature" Title="soporteKM" Level="1">
 			<ComponentGroupRef Id="ProductComponents" />
 		</Feature>
+
+		<!--It should set the icon in Add/Remove programs, but it does not works and I don't know why.-->
+		<Icon Id="icon.ico" SourceFile="C:\Users\Miguel.Robiras\OneDrive - KME\Imágenes\icon_Konica.ico" />
+		<Property Id="ARPPRODUCTICON" Value="icon.ico" />
+		
 	</Product>
 
 	<Fragment>
