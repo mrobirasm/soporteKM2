@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // conjunto de atributos. Cambie estos valores de atributo para modificar la información
 // asociada con un ensamblado.
 [assembly: AssemblyTitle("soporteKM")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Aplicación de soporte de Konica Minolta")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Konica Minolta Business Solutions Spain")]
 [assembly: AssemblyProduct("soporteKM")]
 [assembly: AssemblyCopyright("Copyright ©  2023")]
 [assembly: AssemblyTrademark("")]

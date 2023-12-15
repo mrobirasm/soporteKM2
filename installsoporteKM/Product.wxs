@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+	<Product Id="{59903F38-416E-43B5-A31D-9F1950CBE8C2}" Name="soporteKM" Language="1033" Codepage="1252" Version="1.0.0.0" Manufacturer="Konica Minolta Business Solutions Spain" UpgradeCode="90ab0642-7e3d-47f1-ad73-292b68e42e81">
+		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+		<!-- Gestiona las actualizaciones posteriores. Estos MSI de actualización deben tener igual UpgradeCode, distinto Id y una versión superior-->
+		<MajorUpgrade DowngradeErrorMessage="Ya hay instalada una versión más reciente de [ProductName]." />
+		<MediaTemplate EmbedCab="yes" />
+
+		<Feature Id="ProductFeature" Title="soporteKM" Level="1">
+			<ComponentGroupRef Id="ProductComponents" />
+		</Feature>
+	</Product>
+
+	<Fragment>
+		<Directory Id="TARGETDIR" Name="SourceDir">
+			<Directory Id="ProgramFilesFolder">
+				<Directory Id="INSTALLFOLDER" Name="soporteKM" />
+			</Directory>
+		</Directory>
+	</Fragment>
+
+	<Fragment>
+		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+			<Component Id="ProductComponent" Guid="{2378A82C-EF24-4FB3-924F-398982D09CD1}">
+				<File Id="SoporteKM" Name="soporteKM.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe" KeyPath="no" />
+				<File Id="SoporteKMconfig" Name="soporteKM.exe.config" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe.config" />
+			</Component>
+			<!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+			<!-- <Component Id="ProductComponent"> -->
+				<!-- TODO: Insert files, registry keys, and other resources here. -->
+			<!-- </Component> -->
+		</ComponentGroup>
+	</Fragment>
+</Wix>
