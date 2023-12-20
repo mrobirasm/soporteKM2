@@ -32,8 +32,6 @@
             this.labelSerial = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnSolicitarSoporte = new System.Windows.Forms.Button();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.labelProgreso = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -70,36 +68,6 @@
             this.btnSolicitarSoporte.UseVisualStyleBackColor = true;
             this.btnSolicitarSoporte.Click += new System.EventHandler(this.btnSolicitarSoporte_Click);
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(62, 148);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(214, 10);
-            this.progressBar1.TabIndex = 3;
-            this.progressBar1.Visible = false;
-            // 
-            // labelProgreso
-            // 
-            this.labelProgreso.AutoSize = true;
-            this.labelProgreso.Location = new System.Drawing.Point(152, 129);
-            this.labelProgreso.Name = "labelProgreso";
-            this.labelProgreso.Size = new System.Drawing.Size(35, 13);
-            this.labelProgreso.TabIndex = 4;
-            this.labelProgreso.Text = "label1";
-            this.labelProgreso.Visible = false;
-            this.labelProgreso.Click += new System.EventHandler(this.labelProgreso_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(99, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(140, 20);
-            this.label1.TabIndex = 5;
-            this.label1.Text = "Número de serie";
-            this.label1.Click += new System.EventHandler(this.label1_Click_1);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -117,8 +85,6 @@
             this.ClientSize = new System.Drawing.Size(336, 162);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.labelProgreso);
-            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.btnSolicitarSoporte);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.labelSerial);
@@ -136,8 +102,6 @@
         private System.Windows.Forms.Label labelSerial;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnSolicitarSoporte;
-        private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Label labelProgreso;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
     }

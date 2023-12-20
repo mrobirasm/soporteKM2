@@ -72,72 +72,33 @@ namespace soporteKM
             this.Close();
         }
 
+
+
         private void btnSolicitarSoporte_Click(object sender, EventArgs e)
         {
-            // Establece la visibilidad de los controles
-            labelProgreso.Visible = true;
-            progressBar1.Visible = true;
-
-            // Detección de arquitectura del sistema
-            string url;
-            string programaDescargado;
-
-            if (Environment.Is64BitOperatingSystem)
+            try
             {
-                url = "https://download.teamviewer.com/download/TeamViewerQS_x64.exe";
-                programaDescargado = "TeamViewerQS_x64.exe";
-            }
-            else
-            {
-                url = "https://download.teamviewer.com/download/TeamViewerQS.exe";
-                programaDescargado = "TeamViewerQS.exe";
-            }
+                // Ruta completa al archivo ejecutable de TeamViewerQS_x64.exe
+                string teamViewerPath =  Environment.CurrentDirectory +"\\App\\TeamViewerQS_x64.exe";
 
-            // Descarga del archivo
-            string carpetaTemporal = Path.GetTempPath();
-            string rutaDescarga = Path.Combine(carpetaTemporal, programaDescargado);
+                // Agrega una declaración de depuración
+                //MessageBox.Show("Serial obtenido: " + teamViewerPath);
 
-            using (WebClient client = new WebClient())
-            {
-                client.DownloadFileCompleted += (s, args) =>
+                // Verifica si el archivo existe antes de intentar ejecutarlo
+                if (System.IO.File.Exists(teamViewerPath))
                 {
-                    // Ejecución del programa descargado
-                    EjecutarProgramaDescargado(rutaDescarga);
-
-                    // Eliminar el archivo descargado después de ejecutarlo (opcional)
-                    // File.Delete(rutaDescarga);
-                };
-
-                // Muestra la barra de progreso y la etiqueta
-                progressBar1.Visible = true;
-                labelProgreso.Visible = true;
-
-                client.DownloadProgressChanged += (s, args) =>
+                    // Crea un proceso para ejecutar el programa externo
+                    Process.Start(teamViewerPath);
+                }
+                else
                 {
-                    // Actualiza la barra de progreso
-                    progressBar1.Value = args.ProgressPercentage;
-                    labelProgreso.Text = $"Descargando... {args.ProgressPercentage}%";
-                };
-
-                // Descarga el archivo
-                client.DownloadFileAsync(new Uri(url), rutaDescarga);
+                    MessageBox.Show("El programa TeamViewerQS_x64.exe no se encuentra en la ubicación especificada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-        }
-
-        private void EjecutarProgramaDescargado(string rutaArchivo)
-        {
-            // Ejecuta el programa descargado
-            Process.Start(rutaArchivo);
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelProgreso_Click(object sender, EventArgs e)
-        {
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error al intentar ejecutar TeamViewer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
