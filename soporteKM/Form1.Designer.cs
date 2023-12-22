@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace soporteKM
 {
@@ -36,44 +37,54 @@ namespace soporteKM
             this.btnSolicitarSoporte = new System.Windows.Forms.Button();
             this.labelversion = new System.Windows.Forms.Label();
             this.btnComprobarVersion = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelSerial
             // 
-            this.labelSerial.AutoSize = true;
+            this.labelSerial.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.labelSerial.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelSerial.Location = new System.Drawing.Point(12, 23);
+            this.labelSerial.Location = new System.Drawing.Point(18, 139);
             this.labelSerial.Name = "labelSerial";
-            this.labelSerial.Size = new System.Drawing.Size(70, 26);
+            this.labelSerial.Size = new System.Drawing.Size(331, 32);
             this.labelSerial.TabIndex = 0;
             this.labelSerial.Text = "serial";
-            this.labelSerial.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.labelSerial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelSerial.Click += new System.EventHandler(this.label1_Click);
             // 
             // btnCerrar
             // 
-            this.btnCerrar.Location = new System.Drawing.Point(201, 98);
+            this.btnCerrar.Location = new System.Drawing.Point(273, 177);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(75, 23);
             this.btnCerrar.TabIndex = 1;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Visible = false;
             this.btnCerrar.Click += new System.EventHandler(this.button1_Click);
             // 
             // btnSolicitarSoporte
             // 
-            this.btnSolicitarSoporte.Location = new System.Drawing.Point(62, 98);
+            this.btnSolicitarSoporte.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSolicitarSoporte.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnSolicitarSoporte.FlatAppearance.BorderSize = 0;
+            this.btnSolicitarSoporte.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSolicitarSoporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSolicitarSoporte.ForeColor = System.Drawing.Color.White;
+            this.btnSolicitarSoporte.Location = new System.Drawing.Point(17, 243);
             this.btnSolicitarSoporte.Name = "btnSolicitarSoporte";
-            this.btnSolicitarSoporte.Size = new System.Drawing.Size(118, 23);
+            this.btnSolicitarSoporte.Size = new System.Drawing.Size(331, 32);
             this.btnSolicitarSoporte.TabIndex = 2;
             this.btnSolicitarSoporte.Text = "Solicitar soporte";
-            this.btnSolicitarSoporte.UseVisualStyleBackColor = true;
+            this.btnSolicitarSoporte.UseVisualStyleBackColor = false;
             this.btnSolicitarSoporte.Click += new System.EventHandler(this.btnSolicitarSoporte_Click);
             // 
             // labelversion
             // 
             this.labelversion.AutoSize = true;
-            this.labelversion.Location = new System.Drawing.Point(284, 144);
+            this.labelversion.Location = new System.Drawing.Point(296, 60);
             this.labelversion.Name = "labelversion";
             this.labelversion.Size = new System.Drawing.Size(52, 13);
             this.labelversion.TabIndex = 4;
@@ -82,22 +93,54 @@ namespace soporteKM
             // 
             // btnComprobarVersion
             // 
-            this.btnComprobarVersion.Location = new System.Drawing.Point(62, 127);
+            this.btnComprobarVersion.BackColor = System.Drawing.Color.IndianRed;
+            this.btnComprobarVersion.FlatAppearance.BorderSize = 0;
+            this.btnComprobarVersion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnComprobarVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnComprobarVersion.ForeColor = System.Drawing.Color.White;
+            this.btnComprobarVersion.Location = new System.Drawing.Point(17, 203);
+            this.btnComprobarVersion.Margin = new System.Windows.Forms.Padding(0);
             this.btnComprobarVersion.Name = "btnComprobarVersion";
-            this.btnComprobarVersion.Size = new System.Drawing.Size(147, 23);
+            this.btnComprobarVersion.Padding = new System.Windows.Forms.Padding(3);
+            this.btnComprobarVersion.Size = new System.Drawing.Size(331, 32);
             this.btnComprobarVersion.TabIndex = 5;
             this.btnComprobarVersion.Text = "Nueva Version";
-            this.btnComprobarVersion.UseVisualStyleBackColor = true;
+            this.btnComprobarVersion.UseVisualStyleBackColor = false;
             this.btnComprobarVersion.Visible = false;
             this.btnComprobarVersion.Click += new System.EventHandler(this.btnComprobarVersion_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.ErrorImage = global::soporteKM.Properties.Resources.logo_konica;
+            this.pictureBox1.Image = global::soporteKM.Properties.Resources.logo_konica;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(336, 70);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 6;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(23, 123);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(117, 17);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Número de serie:";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(336, 162);
-            this.Controls.Add(this.btnComprobarVersion);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(367, 287);
             this.Controls.Add(this.labelversion);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btnComprobarVersion);
             this.Controls.Add(this.btnSolicitarSoporte);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.labelSerial);
@@ -105,6 +148,7 @@ namespace soporteKM
             this.Name = "Form1";
             this.Text = "SoporteKM";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,6 +166,8 @@ namespace soporteKM
         private System.Windows.Forms.Button btnSolicitarSoporte;
         private System.Windows.Forms.Label labelversion;
         private System.Windows.Forms.Button btnComprobarVersion;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label1;
     }
 }
 

@@ -21,6 +21,14 @@ namespace soporteKM
         public Form1()
         {
             InitializeComponent();
+
+            // Configuración para ocultar la barra de título
+            ControlBox = true;
+            FormBorderStyle = FormBorderStyle.FixedSingle;  // o cualquier otro estilo de borde que desees
+            MaximizeBox = false; // Deshabilitar el botón de maximizar
+
+
+
         }
 
         // Configuración de la aplicación
@@ -187,7 +195,9 @@ namespace soporteKM
             }
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
 
-
+        }
     }
 }
