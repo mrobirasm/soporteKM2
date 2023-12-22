@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -20,6 +21,17 @@ namespace soporteKM
         public Form1()
         {
             InitializeComponent();
+        }
+
+        // Configuración de la aplicación
+        private string ObtenerVersionActual()
+        {
+            return ConfigurationManager.AppSettings["Version"];
+        }
+        
+        private string ObtenerUrlInstalador()
+        {
+            return ConfigurationManager.AppSettings["UrlInstalador"];
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -59,6 +71,16 @@ namespace soporteKM
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            // Al cargar el formulario, comprueba si hay un archivo en la URL y ajusta la visibilidad del botón
+            btnComprobarVersion.Visible = ExisteArchivoEnURL(ObtenerUrlInstalador());
+
+
+            // Obtén la versión desde el archivo de configuración
+            string version = ConfigurationManager.AppSettings["Version"];
+
+            // Muestra la versión en el Label
+            labelversion.Text = "v" + version;
+
             // Obtener el serial del ordenador
             string serial = ObtenerSerialOrdenador();
 
@@ -100,5 +122,72 @@ namespace soporteKM
                 MessageBox.Show("Error al intentar ejecutar TeamViewer: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private bool ExisteArchivoEnURL(string url)
+        {
+            try
+            {
+                // Intenta realizar una solicitud HEAD para verificar la existencia del archivo
+                var request = (HttpWebRequest)WebRequest.Create(url);
+                request.Method = "HEAD";
+
+                using (var response = (HttpWebResponse)request.GetResponse())
+                {
+                    return response.StatusCode == HttpStatusCode.OK;
+                }
+            }
+            catch (WebException)
+            {
+                // Si ocurre una excepción, asumimos que el archivo no existe
+                return false;
+            }
+        }
+
+
+        private void btnComprobarVersion_Click(object sender, EventArgs e)
+        {
+            string url = ObtenerUrlInstalador();
+            string destino = Path.Combine(Path.GetTempPath(), "installsoporteKM.msi");
+
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    // Intenta descargar el archivo a la carpeta temporal
+                    client.DownloadFile(url, destino);
+
+                    // Si llega a este punto, la descarga fue exitosa
+
+                    // Puedes ejecutar el archivo descargado aquí si es necesario
+                    Process.Start(destino);
+
+                    // Cerrar la aplicación actual
+                    Application.Exit();
+
+
+                    //MessageBox.Show("La descarga y ejecución fueron exitosas.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (WebException webEx)
+            {
+                // Si ocurre una excepción, significa que la descarga falló
+                if (webEx.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.NotFound)
+                {
+                    // El archivo no existe en la URL especificada
+                    MessageBox.Show("No hay nuevas versiones disponibles.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Error al intentar comprobar la versión: " + webEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error general: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+
     }
 }

@@ -19,7 +19,7 @@
 		</Feature>
 
 		<!--Se agrega el icono en Add/Remove programs.-->
-		<Icon Id="icon.ico" SourceFile="C:\Users\Miguel.Robiras\OneDrive - KME\Imágenes\icon_Konica.ico" />
+		<!--<Icon Id="icon.ico" SourceFile="C:\Users\Miguel.Robiras\OneDrive - KME\Imágenes\icon_Konica.ico" />-->
 		<Property Id="ARPPRODUCTICON" Value="icon.ico" />
 		
 	</Product>
@@ -32,19 +32,19 @@
 			</Directory>
 		</Directory>
 	
-		<Directory Id="DesktopFolder" Name="Desktop" />
+		<!--<Directory Id="DesktopFolder" Name="Desktop" />-->
 	
 	</Fragment>
 
 	<Fragment>
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<Component Id="ProductComponent" Guid="{2378A82C-EF24-4FB3-924F-398982D09CD1}">
-				<File Id="SoporteKM" Name="soporteKM.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe" KeyPath="no">
-					<Shortcut Id="ApplicationDesktopShortcut" Directory="DesktopFolder" Name="SoporteKM" Description="Soporte Técnico Konica" Target="soporteKM.exe" WorkingDirectory="INSTALLFOLDER" Icon="soporteKM.exe" IconIndex="0" Advertise="yes">
+				<File Id="SoporteKM" Name="soporteKM.exe" DiskId="1" Source="C:\Users\robir\source\repos\mrobirasm\soporteKM2\soporteKM\bin\Debug\soporteKM.exe" KeyPath="no">
+					<!--<Shortcut Id="ApplicationDesktopShortcut" Directory="DesktopFolder" Name="SoporteKM" Description="Soporte Técnico Konica" Target="soporteKM.exe" WorkingDirectory="INSTALLFOLDER" Icon="soporteKM.exe" IconIndex="0" Advertise="yes">
 						<Icon Id="soporteKM.exe" SourceFile="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe" />
-					</Shortcut>
+					</Shortcut>-->
 				</File>
-				<File Id="SoporteKMconfig" Name="soporteKM.exe.config" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe.config" />
+				<File Id="SoporteKMconfig" Name="soporteKM.exe.config" DiskId="1" Source="C:\Users\robir\source\repos\mrobirasm\soporteKM2\soporteKM\bin\Debug\soporteKM.exe.config" />
 				<RegistryValue Root="HKCU" Key="Software\Konica\SoporteKM" Name="installed" Type="integer" Value="1" KeyPath="yes" />
 			</Component>
 
