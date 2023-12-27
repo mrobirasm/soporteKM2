@@ -23,7 +23,7 @@
 		</Feature>
 
 		<!-- Icono en "Agregar o quitar programas" -->
-		<Icon Id="icon.ico" SourceFile="c:\users\robir\source\repos\mrobirasm\soportekm2\soportekm\bin\debug\soportekm.exe" />
+		<Icon Id="icon.ico" SourceFile="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soportekm.exe" />
 		<Property Id="ARPPRODUCTICON" Value="icon.ico" />
 	</Product>
 
@@ -44,10 +44,10 @@
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<Component Id="ProductComponent" Guid="{2378A82C-EF24-4FB3-924F-398982D09CD1}">
 				<!-- Archivo principal -->
-				<File Id="SoporteKM" Name="soporteKM.exe" DiskId="1" Source="C:\Users\robir\source\repos\mrobirasm\soporteKM2\soporteKM\bin\Debug\soporteKM.exe" KeyPath="yes" />
+				<File Id="SoporteKM" Name="soporteKM.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe" KeyPath="yes" />
 
 				<!-- Configuración del archivo -->
-				<File Id="SoporteKMconfig" Name="soporteKM.exe.config" DiskId="1" Source="C:\Users\robir\source\repos\mrobirasm\soporteKM2\soporteKM\bin\Debug\soporteKM.exe.config" />
+				<File Id="SoporteKMconfig" Name="soporteKM.exe.config" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe.config" />
 
 				<!-- Registro (ahora es per-machine) -->
 				<RegistryValue Root="HKLM" Key="Software\Konica\SoporteKM" Name="installed" Type="integer" Value="1" />
@@ -56,7 +56,7 @@
 		<ComponentGroup Id="ProductComponentsApp" Directory="AppFolder">			
 			<!-- Componente para el archivo TeamViewerQS_x64.exe -->
 			<Component Id="ProductComponentApp" Guid="{DD32F5E1-F238-4058-B6BC-997C0E43D815}">
-				<File Id="TeamViewerFile" Name="TeamViewerQS_x64.exe" DiskId="1" Source="C:\Users\robir\source\repos\mrobirasm\soporteKM2\soporteKM\bin\Debug\App\TeamViewerQS_x64.exe" KeyPath="no" />
+				<File Id="TeamViewerFile" Name="TeamViewerQS_x64.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\App\TeamViewerQS_x64.exe" KeyPath="no" />
 				<CreateFolder />
 				<!-- Agrega esta línea para crear la carpeta AppFolder -->
 			</Component>

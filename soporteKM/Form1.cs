@@ -37,11 +37,6 @@ namespace soporteKM
             return ConfigurationManager.AppSettings["Version"];
         }
         
-        private string ObtenerUrlInstalador()
-        {
-            return ConfigurationManager.AppSettings["UrlInstalador"];
-        }
-
         private void label1_Click(object sender, EventArgs e)
         {
             // Obtener el serial del ordenador
@@ -78,9 +73,15 @@ namespace soporteKM
         }
 
         private void Form1_Load(object sender, EventArgs e)
+
         {
             // Al cargar el formulario, comprueba si hay un archivo en la URL y ajusta la visibilidad del botón
-            btnComprobarVersion.Visible = ExisteArchivoEnURL(ObtenerUrlInstalador());
+            string baseUrl = ConfigurationManager.AppSettings["UrlUpdate"]; // Declaramos la variable baseURL extraida del fichero de configuración
+            string installUrl = $"{baseUrl}/installsoporteKM.msi"; // Declaramos la ruta y nombre del fichero de instalación
+            string versionUrl = $"{baseUrl}/version"; // Declaramos la ruta y nombre del fichero que indica que version esta publicada
+
+
+            btnComprobarVersion.Visible = ExisteArchivoEnURL(installUrl) && EsNuevaVersionDisponible(versionUrl); 
 
 
             // Obtén la versión desde el archivo de configuración
@@ -96,11 +97,7 @@ namespace soporteKM
             labelSerial.Text = serial;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            // Cierra la ventana Actual
-            this.Close();
-        }
+
 
 
 
@@ -151,29 +148,63 @@ namespace soporteKM
             }
         }
 
+        private bool EsNuevaVersionDisponible(string versionUrl)
+        {
+            // Ruta local del archivo "version"
+            string rutaArchivoVersion = Path.Combine(Path.GetTempPath(), "version");
+
+            // Descargar el archivo "version" desde la URL
+            try
+            {
+                using (WebClient client = new WebClient())
+                {
+                    client.DownloadFile(versionUrl, rutaArchivoVersion);
+                }
+            }
+            catch (WebException)
+            {
+                // Si ocurre una excepción, asumimos que el archivo "version" no existe
+                return false;
+            }
+
+            // Leer el contenido del archivo "version"
+            string versionEnArchivo = File.ReadAllText(rutaArchivoVersion);
+
+            // Obtener la versión actual de la aplicación
+            Version versionActual = new Version(Application.ProductVersion);
+
+            // Obtener la versión del archivo "version"
+            Version versionEnArchivoObjeto;
+            if (Version.TryParse(versionEnArchivo, out versionEnArchivoObjeto))
+            {
+                // Comparar las versiones
+                return versionEnArchivoObjeto > versionActual;
+            }
+
+            return false;
+        }
+
 
         private void btnComprobarVersion_Click(object sender, EventArgs e)
         {
-            string url = ObtenerUrlInstalador();
-            string destino = Path.Combine(Path.GetTempPath(), "installsoporteKM.msi");
+            string baseUrl = ConfigurationManager.AppSettings["UrlUpdate"];
+            string installUrl = $"{baseUrl}/installsoportekm.msi";
+            string destino = Path.Combine(Path.GetTempPath(), "installsoportekm.msi");
 
             try
             {
                 using (WebClient client = new WebClient())
                 {
                     // Intenta descargar el archivo a la carpeta temporal
-                    client.DownloadFile(url, destino);
+                    client.DownloadFile(installUrl, destino);
 
                     // Si llega a este punto, la descarga fue exitosa
 
-                    // Puedes ejecutar el archivo descargado aquí si es necesario
+                    // Ejecutar el archivo descargado
                     Process.Start(destino);
 
                     // Cerrar la aplicación actual
                     Application.Exit();
-
-
-                    //MessageBox.Show("La descarga y ejecución fueron exitosas.", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (WebException webEx)

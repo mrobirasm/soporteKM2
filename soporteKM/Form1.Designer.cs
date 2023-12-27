@@ -54,16 +54,7 @@ namespace soporteKM
             this.labelSerial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelSerial.Click += new System.EventHandler(this.label1_Click);
             // 
-            // btnCerrar
-            // 
-            this.btnCerrar.Location = new System.Drawing.Point(273, 177);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(75, 23);
-            this.btnCerrar.TabIndex = 1;
-            this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Visible = false;
-            this.btnCerrar.Click += new System.EventHandler(this.button1_Click);
+
             // 
             // btnSolicitarSoporte
             // 
