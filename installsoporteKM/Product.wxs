@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<!-- Definición del producto -->
-	<Product Id="{59903F38-416E-43B5-A31D-9F1950CBE8C2}"
+	<Product Id="{904DE66A-9A46-43A2-99AE-92A518F691D7}"
              Name="SoporteKM"
              Language="1033"
              Codepage="1252"
-             Version="1.0.0.0"
+             Version="1.0.1"
              Manufacturer="Konica Minolta Business Solutions Spain"
              UpgradeCode="90ab0642-7e3d-47f1-ad73-292b68e42e81">
 
 		<!-- Configuración del paquete -->
 		<Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
 
-		<!-- Gestión de actualizaciones -->
+		<!-- Gestiona las actualizaciones posteriores. Estos MSI de actualización deben tener igual UpgradeCode, distinto Id y una versión superior-->
 		<MajorUpgrade DowngradeErrorMessage="Ya hay instalada una versión más reciente de [ProductName]." />
 		<MediaTemplate EmbedCab="yes" />
 
@@ -25,6 +25,7 @@
 		<!-- Icono en "Agregar o quitar programas" -->
 		<Icon Id="icon.ico" SourceFile="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soportekm.exe" />
 		<Property Id="ARPPRODUCTICON" Value="icon.ico" />
+		
 	</Product>
 
 	<!-- Definición de directorios -->
@@ -44,7 +45,10 @@
 		<ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
 			<Component Id="ProductComponent" Guid="{2378A82C-EF24-4FB3-924F-398982D09CD1}">
 				<!-- Archivo principal -->
-				<File Id="SoporteKM" Name="soporteKM.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe" KeyPath="yes" />
+				<File Id="SoporteKM" Name="soporteKM.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe" KeyPath="yes">
+					<!-- Acceso directo escritorio -->
+					<Shortcut Id="desktopShortcut" Directory="DesktopFolder" Name="Soporte Konica Minolta" WorkingDirectory="INSTALLFOLDER" Icon="icon.ico" IconIndex="0" Advertise="yes"/>
+				</File>
 
 				<!-- Configuración del archivo -->
 				<File Id="SoporteKMconfig" Name="soporteKM.exe.config" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\soporteKM.exe.config" />
@@ -53,7 +57,7 @@
 				<RegistryValue Root="HKLM" Key="Software\Konica\SoporteKM" Name="installed" Type="integer" Value="1" />
 			</Component>
 		</ComponentGroup>
-		<ComponentGroup Id="ProductComponentsApp" Directory="AppFolder">			
+		<ComponentGroup Id="ProductComponentsApp" Directory="AppFolder">
 			<!-- Componente para el archivo TeamViewerQS_x64.exe -->
 			<Component Id="ProductComponentApp" Guid="{DD32F5E1-F238-4058-B6BC-997C0E43D815}">
 				<File Id="TeamViewerFile" Name="TeamViewerQS_x64.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\App\TeamViewerQS_x64.exe" KeyPath="no" />
@@ -64,18 +68,7 @@
 
 	</Fragment>
 
-	<!-- Atajo en el escritorio -->
-	<Fragment>
-		<DirectoryRef Id="DesktopFolder">
-			<Component Id="ApplicationShortcut" Guid="{E920A18F-FF27-430A-8CC6-A4C639521FF3}" Win64="yes">
-				<Shortcut Id="ApplicationDesktopShortcut" Name="SoporteKM" Description="Soporte Técnico Konica" Target="[INSTALLFOLDER]soporteKM.exe" WorkingDirectory="INSTALLFOLDER" Icon="icon.ico">
-					<Icon Id="icon.ico" SourceFile="C:\Users\robir\source\repos\mrobirasm\soportekm2\soportekm\bin\debug\soportekm.exe" />
-				</Shortcut>
-				<RemoveFolder Id="RemoveShortcutFolder" Directory="DesktopFolder" On="uninstall" />
-				<RegistryValue Root="HKCU" Key="Software\Konica\SoporteKM" Name="DesktopSC" Type="integer" Value="1" KeyPath="yes"/>
-			</Component>
-		</DirectoryRef>
-	</Fragment>
+
 </Wix>
 
 
