@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<!-- Definición del producto -->
-	<Product Id="{904DE66A-9A46-43A2-99AE-92A518F691D7}"
+	<Product Id="{2D24B0A7-8FF8-4B3B-900C-8BAF4AC3A04A}"
              Name="SoporteKM"
              Language="1033"
              Codepage="1252"
-             Version="1.0.1"
+             Version="1.0.2"
              Manufacturer="Konica Minolta Business Solutions Spain"
              UpgradeCode="90ab0642-7e3d-47f1-ad73-292b68e42e81">
 
@@ -58,9 +58,9 @@
 			</Component>
 		</ComponentGroup>
 		<ComponentGroup Id="ProductComponentsApp" Directory="AppFolder">
-			<!-- Componente para el archivo TeamViewerQS_x64.exe -->
+			<!-- Componente para el archivo TeamViewerQS.exe -->
 			<Component Id="ProductComponentApp" Guid="{DD32F5E1-F238-4058-B6BC-997C0E43D815}">
-				<File Id="TeamViewerFile" Name="TeamViewerQS_x64.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\App\TeamViewerQS_x64.exe" KeyPath="no" />
+				<File Id="TeamViewerFile" Name="TeamViewerQS.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\App\TeamViewerQS.exe" KeyPath="no" />
 				<CreateFolder />
 				<!-- Agrega esta línea para crear la carpeta AppFolder -->
 			</Component>

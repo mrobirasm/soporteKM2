@@ -13,6 +13,7 @@ using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Reflection;
 
 namespace soporteKM
 {
@@ -32,12 +33,12 @@ namespace soporteKM
         }
 
         // Configuración de la aplicación
-        private string ObtenerVersionActual()
-        {
-            return ConfigurationManager.AppSettings["Version"];
-        }
+        //private string ObtenerVersionActual()
+        //{
+        //    return ConfigurationManager.AppSettings["Version"];
+        //}
         
-        private void label1_Click(object sender, EventArgs e)
+        private void Label1_Click(object sender, EventArgs e)
         {
             // Obtener el serial del ordenador
             string serial = ObtenerSerialOrdenador();
@@ -55,7 +56,7 @@ namespace soporteKM
                 ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_BIOS");
                 ManagementObjectCollection collection = searcher.Get();
 
-                foreach (ManagementObject obj in collection)
+                foreach (ManagementObject obj in collection.Cast<ManagementObject>())
                 {
                     serial = obj["SerialNumber"].ToString();
                     break; // Solo obtenemos el primer resultado
@@ -77,15 +78,15 @@ namespace soporteKM
         {
             // Al cargar el formulario, comprueba si hay un archivo en la URL y ajusta la visibilidad del botón
             string baseUrl = ConfigurationManager.AppSettings["UrlUpdate"]; // Declaramos la variable baseURL extraida del fichero de configuración
-            string installUrl = $"{baseUrl}/installsoporteKM.msi"; // Declaramos la ruta y nombre del fichero de instalación
-            string versionUrl = $"{baseUrl}/version"; // Declaramos la ruta y nombre del fichero que indica que version esta publicada
+            string installUrl = $"{baseUrl}/downloads/soporteKM/installsoporteKM.msi"; // Declaramos la ruta y nombre del fichero de instalación
+            string versionUrl = $"{baseUrl}/downloads/soporteKM/version"; // Declaramos la ruta y nombre del fichero que indica que version esta publicada
 
-
-            btnComprobarVersion.Visible = ExisteArchivoEnURL(installUrl) && EsNuevaVersionDisponible(versionUrl); 
+            
+            btnComprobarVersion.Visible = EsNuevaVersionDisponible(versionUrl) && ExisteArchivoEnURL(installUrl);  
 
 
             // Obtén la versión desde el archivo de configuración
-            string version = ConfigurationManager.AppSettings["Version"];
+            string version = Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
             // Muestra la versión en el Label
             labelversion.Text = "v" + version;
@@ -101,15 +102,12 @@ namespace soporteKM
 
 
 
-        private void btnSolicitarSoporte_Click(object sender, EventArgs e)
+        private void BtnSolicitarSoporte_Click(object sender, EventArgs e)
         {
             try
             {
-                // Ruta completa al archivo ejecutable de TeamViewerQS_x64.exe
-                string teamViewerPath =  Environment.CurrentDirectory +"\\App\\TeamViewerQS_x64.exe";
-
-                // Agrega una declaración de depuración
-                //MessageBox.Show("Serial obtenido: " + teamViewerPath);
+                // Ruta completa al archivo ejecutable de TeamViewerQS.exe
+                string teamViewerPath =  Environment.CurrentDirectory +"\\App\\TeamViewerQS.exe";
 
                 // Verifica si el archivo existe antes de intentar ejecutarlo
                 if (System.IO.File.Exists(teamViewerPath))
@@ -119,7 +117,7 @@ namespace soporteKM
                 }
                 else
                 {
-                    MessageBox.Show("El programa TeamViewerQS_x64.exe no se encuentra en la ubicación especificada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("El programa TeamViewerQS.exe no se encuentra en la ubicación especificada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
@@ -151,6 +149,7 @@ namespace soporteKM
         private bool EsNuevaVersionDisponible(string versionUrl)
         {
             // Ruta local del archivo "version"
+            //string downloadFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads";
             string rutaArchivoVersion = Path.Combine(Path.GetTempPath(), "version");
 
             // Descargar el archivo "version" desde la URL
@@ -173,9 +172,10 @@ namespace soporteKM
             // Obtener la versión actual de la aplicación
             Version versionActual = new Version(Application.ProductVersion);
 
+
+
             // Obtener la versión del archivo "version"
-            Version versionEnArchivoObjeto;
-            if (Version.TryParse(versionEnArchivo, out versionEnArchivoObjeto))
+            if (Version.TryParse(versionEnArchivo, out Version versionEnArchivoObjeto))
             {
                 // Comparar las versiones
                 return versionEnArchivoObjeto > versionActual;
@@ -185,7 +185,7 @@ namespace soporteKM
         }
 
 
-        private void btnComprobarVersion_Click(object sender, EventArgs e)
+        private void BtnComprobarVersion_Click(object sender, EventArgs e)
         {
             string baseUrl = ConfigurationManager.AppSettings["UrlUpdate"];
             string installUrl = $"{baseUrl}/installsoportekm.msi";
@@ -226,9 +226,11 @@ namespace soporteKM
             }
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void PictureBox1_Click(object sender, EventArgs e)
         {
 
         }
+
+
     }
 }

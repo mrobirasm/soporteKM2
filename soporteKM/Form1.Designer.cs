@@ -33,7 +33,6 @@ namespace soporteKM
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.labelSerial = new System.Windows.Forms.Label();
-            this.btnCerrar = new System.Windows.Forms.Button();
             this.btnSolicitarSoporte = new System.Windows.Forms.Button();
             this.labelversion = new System.Windows.Forms.Label();
             this.btnComprobarVersion = new System.Windows.Forms.Button();
@@ -52,9 +51,7 @@ namespace soporteKM
             this.labelSerial.TabIndex = 0;
             this.labelSerial.Text = "serial";
             this.labelSerial.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.labelSerial.Click += new System.EventHandler(this.label1_Click);
-            // 
-
+            this.labelSerial.Click += new System.EventHandler(this.Label1_Click);
             // 
             // btnSolicitarSoporte
             // 
@@ -70,7 +67,7 @@ namespace soporteKM
             this.btnSolicitarSoporte.TabIndex = 2;
             this.btnSolicitarSoporte.Text = "Solicitar soporte";
             this.btnSolicitarSoporte.UseVisualStyleBackColor = false;
-            this.btnSolicitarSoporte.Click += new System.EventHandler(this.btnSolicitarSoporte_Click);
+            this.btnSolicitarSoporte.Click += new System.EventHandler(this.BtnSolicitarSoporte_Click);
             // 
             // labelversion
             // 
@@ -95,10 +92,10 @@ namespace soporteKM
             this.btnComprobarVersion.Padding = new System.Windows.Forms.Padding(3);
             this.btnComprobarVersion.Size = new System.Drawing.Size(331, 32);
             this.btnComprobarVersion.TabIndex = 5;
-            this.btnComprobarVersion.Text = "Nueva Version";
+            this.btnComprobarVersion.Text = "Nueva Versión";
             this.btnComprobarVersion.UseVisualStyleBackColor = false;
             this.btnComprobarVersion.Visible = false;
-            this.btnComprobarVersion.Click += new System.EventHandler(this.btnComprobarVersion_Click);
+            this.btnComprobarVersion.Click += new System.EventHandler(this.BtnComprobarVersion_Click);
             // 
             // pictureBox1
             // 
@@ -110,7 +107,7 @@ namespace soporteKM
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 6;
             this.pictureBox1.TabStop = false;
-            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.pictureBox1.Click += new System.EventHandler(this.PictureBox1_Click);
             // 
             // label1
             // 
@@ -133,7 +130,6 @@ namespace soporteKM
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnComprobarVersion);
             this.Controls.Add(this.btnSolicitarSoporte);
-            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.labelSerial);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
@@ -153,7 +149,6 @@ namespace soporteKM
         #endregion
 
         private System.Windows.Forms.Label labelSerial;
-        private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnSolicitarSoporte;
         private System.Windows.Forms.Label labelversion;
         private System.Windows.Forms.Button btnComprobarVersion;
