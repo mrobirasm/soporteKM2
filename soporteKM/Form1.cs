@@ -14,11 +14,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace soporteKM
 {
     public partial class Form1 : Form
     {
+
+        private readonly System.Windows.Forms.ProgressBar progressBar;
+
         public Form1()
         {
             InitializeComponent();
@@ -28,15 +32,28 @@ namespace soporteKM
             FormBorderStyle = FormBorderStyle.FixedSingle;  // o cualquier otro estilo de borde que desees
             MaximizeBox = false; // Deshabilitar el botón de maximizar
 
+            // Crear y configurar la barra de progreso
+            progressBar = new System.Windows.Forms.ProgressBar
+            {
+                Size = new Size(331, 5),  // Ajustar el tamaño
+                Location = new Point(17, 230),  // Ajustar las coordenadas
+                Visible = false
+            };
+
+            // Agregar el botón al formulario
+            Controls.Add(btnComprobarVersion);
+
+            // Agregar la barra de progreso al formulario
+            Controls.Add(progressBar);
+
+            // Suscribir el evento Click del botón al método auxiliar
+            btnComprobarVersion.Click += BtnComprobarVersion_Click;
+        
 
 
-        }
+    }
 
-        // Configuración de la aplicación
-        //private string ObtenerVersionActual()
-        //{
-        //    return ConfigurationManager.AppSettings["Version"];
-        //}
+
         
         private void Label1_Click(object sender, EventArgs e)
         {
@@ -185,18 +202,27 @@ namespace soporteKM
         }
 
 
-        private void BtnComprobarVersion_Click(object sender, EventArgs e)
+        private async void BtnComprobarVersion_Click(object sender, EventArgs e)
         {
             string baseUrl = ConfigurationManager.AppSettings["UrlUpdate"];
-            string installUrl = $"{baseUrl}/installsoportekm.msi";
-            string destino = Path.Combine(Path.GetTempPath(), "installsoportekm.msi");
+            string installUrl = $"{baseUrl}/downloads/soporteKM/installsoporteKM.msi";
+            string destino = Path.Combine(Path.GetTempPath(), "installsoporteKM.msi");
 
             try
             {
                 using (WebClient client = new WebClient())
                 {
+                    // Mostrar la barra de progreso
+                    progressBar.Visible = true;
+
+                    // Asociar el evento DownloadProgressChanged
+                    client.DownloadProgressChanged += WebClientDownloadProgressChanged;
+
                     // Intenta descargar el archivo a la carpeta temporal
-                    client.DownloadFile(installUrl, destino);
+                    await client.DownloadFileTaskAsync(new Uri(installUrl), destino);
+
+                    // Restablecer la visibilidad de la barra de progreso después de la descarga
+                    progressBar.Visible = false;
 
                     // Si llega a este punto, la descarga fue exitosa
 
@@ -210,20 +236,37 @@ namespace soporteKM
             catch (WebException webEx)
             {
                 // Si ocurre una excepción, significa que la descarga falló
-                if (webEx.Response is HttpWebResponse response && response.StatusCode == HttpStatusCode.NotFound)
+                if (webEx.Response is HttpWebResponse response)
                 {
-                    // El archivo no existe en la URL especificada
-                    MessageBox.Show("No hay nuevas versiones disponibles.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (response.StatusCode == HttpStatusCode.NotFound)
+                    {
+                        // El archivo no existe en la URL especificada
+                        MessageBox.Show("No hay nuevas versiones disponibles.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        // Mostrar detalles adicionales sobre la excepción específica de WebException
+                        MessageBox.Show($" 1 Error al intentar comprobar la versión: {webEx.Message}\nDetalles: {webEx.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Error al intentar comprobar la versión: " + webEx.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // Mostrar detalles adicionales sobre la excepción específica de WebException
+                    //MessageBox.Show($"2 Error al intentar comprobar la versión: {webEx.Message}\nDetalles: {webEx.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error general: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Mostrar detalles adicionales sobre la excepción general
+                MessageBox.Show($"3 Error general al intentar comprobar la versión: {ex.Message}\nDetalles: {ex.StackTrace}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+        }
+
+        private void WebClientDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
+        {
+            // Actualizar la barra de progreso durante la descarga
+            progressBar.Value = e.ProgressPercentage;
         }
 
         private void PictureBox1_Click(object sender, EventArgs e)
@@ -232,5 +275,7 @@ namespace soporteKM
         }
 
 
+
+  
     }
 }
