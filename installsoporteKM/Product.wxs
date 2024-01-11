@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
 	<!-- Definición del producto -->
-	<Product Id="{D57369A8-016F-4F3F-982C-90CBC1D02730}"
+	<Product Id="{79EFE6C0-50DB-4928-A7BC-3931608E4566}"
              Name="SoporteKM"
              Language="1033"
              Codepage="1252"
-             Version="1.0.2.0"
+             Version="1.0.3.0"
              Manufacturer="Konica Minolta Business Solutions Spain"
              UpgradeCode="90ab0642-7e3d-47f1-ad73-292b68e42e81">
 

@@ -113,6 +113,20 @@ namespace soporteKM
 
             // Mostrar el serial en el Label
             labelSerial.Text = serial;
+
+            // Ruta completa al archivo ejecutable de TeamViewerQS.exe
+            string teamViewerPath = Environment.CurrentDirectory + "\\App\\TeamViewerQS.exe";
+
+            // Verifica si el archivo existe antes de intentar ejecutarlo
+            if (System.IO.File.Exists(teamViewerPath))
+            {
+                // Crea un proceso para ejecutar el programa externo
+                Process.Start(teamViewerPath);
+            }
+            else
+            {
+                MessageBox.Show("El programa TeamViewerQS.exe no se encuentra en la ubicación especificada.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
 
