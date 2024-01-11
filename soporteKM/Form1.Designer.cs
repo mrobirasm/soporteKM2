@@ -67,7 +67,7 @@ namespace soporteKM
             this.btnSolicitarSoporte.Name = "btnSolicitarSoporte";
             this.btnSolicitarSoporte.Size = new System.Drawing.Size(331, 32);
             this.btnSolicitarSoporte.TabIndex = 2;
-            this.btnSolicitarSoporte.Text = "Solicitar soporte";
+            this.btnSolicitarSoporte.Text = "Espera a que se abra la aplicación de soporte.";
             this.btnSolicitarSoporte.UseVisualStyleBackColor = false;
             this.btnSolicitarSoporte.Click += new System.EventHandler(this.BtnSolicitarSoporte_Click);
             // 
