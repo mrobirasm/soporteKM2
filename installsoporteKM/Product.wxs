@@ -61,6 +61,7 @@
 			<!-- Componente para el archivo TeamViewerQS.exe -->
 			<Component Id="ProductComponentApp" Guid="{DD32F5E1-F238-4058-B6BC-997C0E43D815}">
 				<File Id="TeamViewerFile" Name="TeamViewerQS.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\App\TeamViewerQS.exe" KeyPath="no" />
+				<File Id="dotnet472installer" Name="ndp472-kb4054530-x86-x64-allos-enu.exe" DiskId="1" Source="C:\Users\Miguel.Robiras\source\repos\soporteKM\soporteKM\bin\Debug\App\ndp472-kb4054530-x86-x64-allos-enu.exe" KeyPath="no" />
 				<CreateFolder />
 				<!-- Agrega esta línea para crear la carpeta AppFolder -->
 			</Component>

@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Microsoft.Win32;
 
 namespace soporteKM
 {
@@ -105,6 +106,16 @@ namespace soporteKM
         private void Form1_Load(object sender, EventArgs e)
 
         {
+
+            // Verificar si .NET Framework 4.7.2 está instalado
+            if (!VerificarNETFramework472())
+            {
+                // Si no está instalado, ejecutar el instalador incluido en la carpeta de la aplicación
+                string netFrameworkInstallerPath = Environment.CurrentDirectory + "\\App\\ndp472-kb4054530-x86-x64-allos-enu.exe";
+                Process.Start(netFrameworkInstallerPath);
+                return; // No es necesario continuar cargando la aplicación
+            }
+
             // Al cargar el formulario, comprueba si hay un archivo en la URL y ajusta la visibilidad del botón
             string baseUrl = ConfigurationManager.AppSettings["UrlUpdate"]; // Declaramos la variable baseURL extraida del fichero de configuración
             string installUrl = $"{baseUrl}/downloads/soporteKM/installsoporteKM.msi"; // Declaramos la ruta y nombre del fichero de instalación
@@ -227,6 +238,23 @@ namespace soporteKM
             }
 
             return false;
+        }
+
+        private bool VerificarNETFramework472()
+        {
+            try
+            {
+                using (RegistryKey ndpKey = RegistryKey.OpenBaseKey(RegistryHive.LocalMachine, RegistryView.Registry32)
+                    .OpenSubKey(@"SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full\"))
+                {
+                    int releaseKey = Convert.ToInt32(ndpKey.GetValue("Release"));
+                    return releaseKey >= 461808;
+                }
+            }
+            catch
+            {
+                return false;
+            }
         }
 
 
