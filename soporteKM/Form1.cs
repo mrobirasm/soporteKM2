@@ -23,6 +23,7 @@ namespace soporteKM
 
         private readonly System.Windows.Forms.ProgressBar progressBar;
 
+
         public Form1()
         {
             InitializeComponent();
@@ -40,6 +41,7 @@ namespace soporteKM
                 Visible = false
             };
 
+
             // Agregar el botón al formulario
             Controls.Add(btnComprobarVersion);
 
@@ -48,17 +50,27 @@ namespace soporteKM
 
             // Suscribir el evento Click del botón al método auxiliar
             btnComprobarVersion.Click += BtnComprobarVersion_Click;
-        
+
+            // Suscribir el evento Click del Label al método para copiar el serial
+            labelSerial.Click += LabelSerial_Click;
+
+            //
 
 
-    }
 
+        }
 
-        
+        private void LabelSerial_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(labelSerial.Text);
+            MessageBox.Show("Serial copiado al portapapeles.");
+        }
+
         private void Label1_Click(object sender, EventArgs e)
         {
             // Obtener el serial del ordenador
             string serial = ObtenerSerialOrdenador();
+
 
             // Mostrar el serial en el Label
             labelSerial.Text = serial;
@@ -114,6 +126,7 @@ namespace soporteKM
             // Mostrar el serial en el Label
             labelSerial.Text = serial;
 
+
             // Ruta completa al archivo ejecutable de TeamViewerQS.exe
             string teamViewerPath = Environment.CurrentDirectory + "\\App\\TeamViewerQS.exe";
 
@@ -129,9 +142,10 @@ namespace soporteKM
             }
         }
 
-
-
-
+//        private string ObtenerNombreHost()
+//        {
+//            return System.Net.Dns.GetHostName();
+//        }
 
         private void BtnSolicitarSoporte_Click(object sender, EventArgs e)
         {
@@ -288,8 +302,5 @@ namespace soporteKM
 
         }
 
-
-
-  
     }
 }
