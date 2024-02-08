@@ -41,6 +41,7 @@ namespace soporteKM
             this.label1 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.labelHostname = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -143,12 +144,24 @@ namespace soporteKM
             this.labelHostname.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelHostname.Click += new System.EventHandler(this.LabelHostname_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(15, 127);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(76, 17);
+            this.label2.TabIndex = 10;
+            this.label2.Text = "Hostname:";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(367, 287);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.labelHostname);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.labelversion);
@@ -182,6 +195,7 @@ namespace soporteKM
         private System.Windows.Forms.Label label1;
         private ProgressBar progressBar1;
         private Label labelHostname;
+        private Label label2;
     }
 }
 

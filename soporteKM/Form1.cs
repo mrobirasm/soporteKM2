@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Configuration;
-using System.Collections.Generic;
-using System.ComponentModel;
+//using System.Collections.Generic;
+//using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
@@ -9,12 +9,12 @@ using System.IO;
 using System.Linq;
 using System.Management;
 using System.Net;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
+//using System.Reflection.Emit;
+//using System.Text;
+//using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Reflection;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+//using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Microsoft.Win32;
 
 
@@ -59,7 +59,7 @@ namespace soporteKM
             labelSerial.Click += LabelSerial_Click;
 
             // Suscribir el evento Click del Label al método para copiar el nombre del host al portapapeles
-            labelHostname.Click += LabelHostname_Click;
+            //labelHostname.Click += LabelHostname_Click;
 
             
         }
@@ -108,8 +108,7 @@ namespace soporteKM
                     break; // Solo obtenemos el primer resultado
                 }
 
-                // Agrega una declaración de depuración
-                //MessageBox.Show("Serial obtenido: " + serial);
+
             }
             catch (Exception ex)
             {
@@ -182,10 +181,6 @@ namespace soporteKM
             }
         }
 
-//        private string ObtenerNombreHost()
-//        {
-//            return System.Net.Dns.GetHostName();
-//        }
 
         private void BtnSolicitarSoporte_Click(object sender, EventArgs e)
         {
@@ -363,6 +358,9 @@ namespace soporteKM
 
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
