@@ -17,6 +17,7 @@ using System.Reflection;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Microsoft.Win32;
 
+
 namespace soporteKM
 {
     public partial class Form1 : Form
@@ -43,6 +44,8 @@ namespace soporteKM
             };
 
 
+
+
             // Agregar el botón al formulario
             Controls.Add(btnComprobarVersion);
 
@@ -55,17 +58,28 @@ namespace soporteKM
             // Suscribir el evento Click del Label al método para copiar el serial
             labelSerial.Click += LabelSerial_Click;
 
-            //
+            // Suscribir el evento Click del Label al método para copiar el nombre del host al portapapeles
+            labelHostname.Click += LabelHostname_Click;
 
-
-
+            
         }
 
         private void LabelSerial_Click(object sender, EventArgs e)
         {
+            // Copiar el serial al portapapeles cuando se hace clic en el Label
             Clipboard.SetText(labelSerial.Text);
             MessageBox.Show("Serial copiado al portapapeles.");
         }
+
+        private void LabelHostname_Click(object sender, EventArgs e)
+        {
+                     
+            // Copiar el nombre del host al portapapeles cuando se hace clic en el Label
+            Clipboard.SetText(labelHostname.Text);
+            MessageBox.Show("Nombre del host copiado al portapapeles.");
+        
+        }
+
 
         private void Label1_Click(object sender, EventArgs e)
         {
@@ -76,6 +90,8 @@ namespace soporteKM
             // Mostrar el serial en el Label
             labelSerial.Text = serial;
         }
+
+
 
         private string ObtenerSerialOrdenador()
         {
@@ -101,6 +117,13 @@ namespace soporteKM
             }
 
             return serial;
+        }
+
+        private string ObtenerNombreHost()
+        {
+            // Obtener y retornar el nombre del host del equipo
+            return System.Net.Dns.GetHostName();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -136,6 +159,12 @@ namespace soporteKM
 
             // Mostrar el serial en el Label
             labelSerial.Text = serial;
+
+            // Obtener el hostname del ordenador
+            string hostname = ObtenerNombreHost();
+
+            // Mostrar el hostname en el label
+            labelHostname.Text = hostname;
 
 
             // Ruta completa al archivo ejecutable de TeamViewerQS.exe
@@ -319,6 +348,10 @@ namespace soporteKM
 
         }
 
+
+
+
+
         private void WebClientDownloadProgressChanged(object sender, DownloadProgressChangedEventArgs e)
         {
             // Actualizar la barra de progreso durante la descarga
@@ -329,6 +362,7 @@ namespace soporteKM
         {
 
         }
+
 
     }
 }
